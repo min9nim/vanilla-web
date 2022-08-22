@@ -1,20 +1,15 @@
+import SelectedLanguages from './SelectedLanguages'
+import SearchInput from './SearchInput'
+
 export default function App({$target}) {
     this.state = {
+        value: '',
         languages: [],
         selectedLanguages: [],
     }
     this.render = () => {
-        $target.innerHTML = `<div class="SelectedLanguage">
-        <ul>
-          <li>JavaScrip</li>
-          <li>Python</li>
-          <li>Elixir</li>
-          <li>Java</li>
-          <li>PHP</li>
-        </ul>
-      </div>
+        $target.innerHTML = `${SelectedLanguages()}
       <form class="SearchInput">
-        <input class="SearchInput__input" type="text" placeholder="프로그램 언어를 입력하세요." value="Script">
       </form>
       <div class="Suggestion">
         <ul>
@@ -26,4 +21,10 @@ export default function App({$target}) {
       </div>`
     }
     this.render()
+    new SearchInput({
+        value: this.state.value,
+        onChange: (value) => {
+            console.log(value)
+        },
+    })
 }
